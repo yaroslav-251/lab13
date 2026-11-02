@@ -126,3 +126,69 @@
 //     {
 //     }
 // }
+// using System.Runtime.InteropServices;
+// using System.Security.Cryptography.X509Certificates;
+
+// do
+// {
+//     Console.WriteLine("1. Вычислить");
+//     Console.WriteLine("0. Выход");
+//     Console.Write("Выберите действие: ");
+//     string t = Console.ReadLine();
+//     if (t == "0")
+//     {
+//         break;
+//     }
+//     try
+//     {
+//         Console.WriteLine("Введите первое число");
+//         int r = int.Parse(Console.ReadLine());
+//         Console.Write("Введите второе число: ");
+//         int b = int.Parse(Console.ReadLine());
+//         Console.Write("Введите операцию (+, -, *, /): ");
+//         string op = Console.ReadLine();
+//         int res = 0;
+
+//     switch (op)
+//     {
+//         case "+":
+//         res = r + b;
+//         break;
+//         case "-":
+//         res = r - b;
+//         break;
+//         case"*":
+//         res = r * b;
+//         break;
+//         case"/":
+//         res = r / b;
+//         break;
+//         default:throw new UnknownOperationException(
+//                     $"Неизвестная операция: {op}");
+
+//     }
+//     Console.WriteLine(res);}
+//     catch (FormatException)
+//     {
+//         Console.WriteLine("Ошибка: необходимо вводить целые числа!");
+//     }
+//     catch (DivideByZeroException)
+//     {
+//         Console.WriteLine("Ошибка: нельзя делить на ноль!");
+//     }
+//     catch (UnknownOperationException ex)
+//     {
+//         Console.WriteLine(ex.Message);
+//     }
+//     finally
+//     {
+//         Console.WriteLine("------------------------");
+//     }
+// } while (true);
+
+// class UnknownOperationException : Exception
+// {
+//     public UnknownOperationException(string message) : base(message)
+//     {
+//     }
+// }
