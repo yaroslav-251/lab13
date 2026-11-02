@@ -47,32 +47,82 @@
 // {
 //     Console.WriteLine($"Непредвиденная ошибка: {ex.Message}");
 // }
-Console.WriteLine();
-Console.WriteLine("=== finally ===");
+// Console.WriteLine();
+// Console.WriteLine("=== finally ===");
 
-try
-{
-    Console.WriteLine("Пытаемся выполнить операцию...");
-    int[] numbers = { 1, 2, 3 };
-    Console.WriteLine(numbers[5]);
-}
-catch (IndexOutOfRangeException ex)
-{
-    Console.WriteLine($"Ошибка: {ex.Message}");
-}
-finally
-{
-    Console.WriteLine("Этот блок выполнится в любом случае");
-}
+// try
+// {
+//     Console.WriteLine("Пытаемся выполнить операцию...");
+//     int[] numbers = { 1, 2, 3 };
+//     Console.WriteLine(numbers[5]);
+// }
+// catch (IndexOutOfRangeException ex)
+// {
+//     Console.WriteLine($"Ошибка: {ex.Message}");
+// }
+// finally
+// {
+//     Console.WriteLine("Этот блок выполнится в любом случае");
+// }
 
-Console.WriteLine();
-Console.WriteLine("=== finally без ошибки ===");
+// Console.WriteLine();
+// Console.WriteLine("=== finally без ошибки ===");
 
-try
-{
-    Console.WriteLine("Операция без ошибок");
-}
-finally
-{
-    Console.WriteLine("И здесь finally тоже сработал");
-}
+// try
+// {
+//     Console.WriteLine("Операция без ошибок");
+// }
+// finally
+// {
+//     Console.WriteLine("И здесь finally тоже сработал");
+// }
+// Console.WriteLine();
+// Console.WriteLine("=== throw ===");
+
+// try
+// {
+//     double result = CalculateSquareRoot(987654);
+//     Console.WriteLine(result);
+// }
+// catch (ArgumentException ex)
+// {
+//     Console.WriteLine($"Ошибка: {ex.Message}");
+// }
+
+// double CalculateSquareRoot(double number)
+// {
+//     if (number < 0)
+//     {
+//         throw new ArgumentException("Число не может быть отрицательным");
+//     }
+//     return Math.Sqrt(number);
+// }
+// Console.WriteLine();
+// Console.WriteLine("=== Собственное исключение ===");
+
+// try
+// {
+//     Withdraw(1000, 1500);
+// }
+// catch (NegativeBalanceException ex)
+// {
+//     Console.WriteLine($"Операция отклонена: {ex.Message}");
+// }
+
+// Withdraw(1000, 400);
+
+// void Withdraw(double balance, double amount)
+// {
+//     if (amount > balance)
+//     {
+//         throw new NegativeBalanceException($"Недостаточно средств: на счёте {balance}, а нужно снять {amount}");
+//     }
+//     Console.WriteLine($"Снято {amount}, остаток {balance - amount}");
+// }
+
+// class NegativeBalanceException : Exception
+// {
+//     public NegativeBalanceException(string message) : base(message)
+//     {
+//     }
+// }
