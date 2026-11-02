@@ -126,6 +126,8 @@
 //     {
 //     }
 // }
+using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
@@ -209,25 +211,128 @@ using System.Security.Cryptography.X509Certificates;
 //     Console.WriteLine("Ошибка: такого индекса нет!");
 // }
 
-try
+// try
+// {
+//     Console.WriteLine("Введите возраст");
+//     int f = int.Parse(Console.ReadLine());
+//     CheckAge(f);
+//     Console.WriteLine("Возраст указан верно");
+// }
+// catch (FormatException)
+// {
+//     Console.WriteLine("Ошибка: введите возраст числом!");
+// }
+// catch (ArgumentException ex)
+// {
+//     Console.WriteLine($"Ошибка: {ex.Message}");
+// }
+// void CheckAge(int age)
+//     {
+//         if (age < 0 || age > 120)
+//         {
+//             throw new ArgumentException("возраст только от 0 до 120");
+//         }
+//     }
+double bal = 1000;
+
+while (true)
 {
-    Console.WriteLine("Введите возраст");
-    int f = int.Parse(Console.ReadLine());
-    CheckAge(f);
-    Console.WriteLine("Возраст указан верно");
-}
-catch (FormatException)
-{
-    Console.WriteLine("Ошибка: введите возраст числом!");
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine($"Ошибка: {ex.Message}");
-}
-void CheckAge(int age)
+    Console.WriteLine("=== БАНК ===");
+    Console.WriteLine("1. Пополнить счёт");
+    Console.WriteLine("2. Снять деньги");
+    Console.WriteLine("0. Выход");
+    Console.Write("Выберите действие: ");
+
+    string act = Console.ReadLine();
+
+    if (act == "0")
     {
-        if (age < 0 || age > 120)
+        break;
+    }
+
+    try
+    {
+        Console.Write("Введите сумму: ");
+
+        double sum = double.Parse(Console.ReadLine());
+
+        if (act == "1")
         {
-            throw new ArgumentException("возраст только от 0 до 120");
+            Deposit(ref bal, sum);
+        }
+        else if (act == "2")
+        {
+            Withdraw(ref bal, sum);
+        }
+        else
+        {
+            Console.WriteLine("Неизвестная команда!");
         }
     }
+    catch (FormatException)
+    {
+        Console.WriteLine("Ошибка: введите сумму числом!");
+    }
+    catch (InvalidAmountException ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+    }
+    catch (InsufficientFundsException ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+    }
+    finally
+    {
+        Console.WriteLine($"Текущий баланс: {bal}");
+        Console.WriteLine("------------------------");
+    }
+}
+
+void Deposit(ref double bal, double sum)
+{
+    if (sum <= 0)
+    {
+        throw new InvalidAmountException(
+            "Сумма пополнения должна быть больше нуля!"
+        );
+    }
+
+    bal += sum;
+
+    Console.WriteLine("Счёт успешно пополнен!");
+}
+
+void Withdraw(ref double bal, double sum)
+{
+    if (sum <= 0)
+    {
+        throw new InvalidAmountException(
+            "Сумма снятия должна быть больше нуля!"
+        );
+    }
+
+    if (sum > bal)
+    {
+        throw new InsufficientFundsException(
+            "На счёте недостаточно средств!"
+        );
+    }
+
+    bal -= sum;
+
+    Console.WriteLine("Деньги успешно сняты!");
+}
+
+class InvalidAmountException : Exception
+{
+    public InvalidAmountException(string message) : base(message)
+    {
+    }
+}
+
+class InsufficientFundsException : Exception
+{
+    public InsufficientFundsException(string message) : base(message)
+    {
+    }
+}
