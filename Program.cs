@@ -126,8 +126,8 @@
 //     {
 //     }
 // }
-// using System.Runtime.InteropServices;
-// using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 // do
 // {
@@ -191,4 +191,20 @@
 //     public UnknownOperationException(string message) : base(message)
 //     {
 //     }
+// }
+// int[] n = {1, 4, 7};
+
+// try
+// {
+// Console.WriteLine("Введите индекс");
+// int y = int.Parse(Console.ReadLine());
+// Console.WriteLine($"Значение: {n[y]}");
+// }
+// catch (FormatException)
+// {
+//     Console.WriteLine("Ошибка: нужно ввести целое число!");
+// }
+// catch (IndexOutOfRangeException)
+// {
+//     Console.WriteLine("Ошибка: такого индекса нет!");
 // }
