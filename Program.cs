@@ -208,3 +208,26 @@ using System.Security.Cryptography.X509Certificates;
 // {
 //     Console.WriteLine("Ошибка: такого индекса нет!");
 // }
+
+try
+{
+    Console.WriteLine("Введите возраст");
+    int f = int.Parse(Console.ReadLine());
+    CheckAge(f);
+    Console.WriteLine("Возраст указан верно");
+}
+catch (FormatException)
+{
+    Console.WriteLine("Ошибка: введите возраст числом!");
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+void CheckAge(int age)
+    {
+        if (age < 0 || age > 120)
+        {
+            throw new ArgumentException("возраст только от 0 до 120");
+        }
+    }
