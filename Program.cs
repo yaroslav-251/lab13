@@ -47,3 +47,32 @@
 // {
 //     Console.WriteLine($"Непредвиденная ошибка: {ex.Message}");
 // }
+Console.WriteLine();
+Console.WriteLine("=== finally ===");
+
+try
+{
+    Console.WriteLine("Пытаемся выполнить операцию...");
+    int[] numbers = { 1, 2, 3 };
+    Console.WriteLine(numbers[5]);
+}
+catch (IndexOutOfRangeException ex)
+{
+    Console.WriteLine($"Ошибка: {ex.Message}");
+}
+finally
+{
+    Console.WriteLine("Этот блок выполнится в любом случае");
+}
+
+Console.WriteLine();
+Console.WriteLine("=== finally без ошибки ===");
+
+try
+{
+    Console.WriteLine("Операция без ошибок");
+}
+finally
+{
+    Console.WriteLine("И здесь finally тоже сработал");
+}
